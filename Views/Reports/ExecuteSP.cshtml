@@ -1,0 +1,43 @@
+﻿@model LAB_5.Models.ExecuteSP
+
+@{
+    ViewBag.Title = "Поиск детали";
+}
+<div class="row">
+    <h1>Поиск детали</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.DropDownListFor(model => model.SelectDetal_Id, new SelectList(Model.detals, "Id", "Name"), new { @Style = "width:100%;" })
+        <input type="submit" value="Найти" class="btn btn-default" />
+    }
+</div>
+
+<div class="row">
+    <table class="table">
+        <tr>
+            <th>
+                Название Детали
+            </th>
+            <th>
+                Стоимость
+            </th>
+        </tr>
+
+        @if (Model.DetalNames != null)
+        {
+            foreach (var item in Model.DetalNames)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cost)
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+

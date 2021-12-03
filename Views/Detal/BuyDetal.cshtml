@@ -1,0 +1,49 @@
+﻿@model LAB_5.Models.OrderModel
+
+@using (Html.BeginForm("BuyDetal", null))
+{
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Order.id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Order.customer, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Order.customer)
+            @Html.ValidationMessageFor(m => m.Order.customer)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Order.adress, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Order.adress)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.code, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.code)
+        </div>
+    </div>
+    <div class="form-group">
+        @foreach (var item in Model.detals)
+        {
+            <div>
+                <label>
+                    <input type="checkbox" name="Order.DetalNumber" value="@item.id" checked="@Model.Order.DetalNumber.Contains(item.id)" /> @item.name
+                </label>
+            </div>
+        }
+        </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Заказать" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+}

@@ -1,0 +1,13 @@
+﻿@model LAB_5.Models.DetalModel
+
+@{
+    ViewBag.Title = "Изменить деталь";
+    ViewBag.ButtonTitle = "Изменить";
+}
+
+
+@Html.Partial("_FormDetal", Model)
+
+<div>
+    @Html.ActionLink("список деталей", "Index")
+</div>

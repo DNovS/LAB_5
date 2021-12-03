@@ -1,0 +1,44 @@
+﻿@model LAB_5.Models.LinqReportModel
+
+@{
+    ViewBag.Title = "Детали по цеху";
+}
+
+<div class="row">
+    <h1>Детали по цеху</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.DropDownListFor(model => model.SelectShop_Id, new SelectList(Model.shops, "Id", "Name"), new { @Style = "width:100%;" })
+        <input type="submit" value="Найти" class="btn btn-default" />
+    }
+</div>
+
+<div class="row">
+    <table class="table">
+        <tr>
+            <th>
+                Название детали
+            </th>
+            <th>
+                Стоимость
+            </th>
+        </tr>
+
+        @if (Model.ReportData != null)
+        {
+            foreach (var item in Model.ReportData)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DetalName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cost)
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+
